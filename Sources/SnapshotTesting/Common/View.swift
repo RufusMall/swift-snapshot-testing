@@ -927,10 +927,10 @@ func prepareView(
     window = keyWindow
     window.frame.size = size
   } else {
-    window = Window(
-      config: .init(safeArea: config.safeArea, size: config.size ?? size, traits: traits),
-      viewController: viewController
-    )
+      window = UIApplication.sharedIfAvailable?.keyWindow ?? Window(
+        config: .init(safeArea: config.safeArea, size: config.size ?? size, traits: traits),
+        viewController: viewController
+      )
   }
   let dispose = add(traits: traits, viewController: viewController, to: window)
 
